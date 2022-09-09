@@ -53,6 +53,11 @@ import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
                           async function () {
                               console.log("Random numbers received!");
                               try {
+                                  const numbers =
+                                      await randomNumbers.getRequestIdToNumbers(
+                                          requestId
+                                      );
+                                  assert(numbers.length > 0);
                                   resolve();
                               } catch (error) {
                                   reject(error);
