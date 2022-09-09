@@ -49,11 +49,12 @@ const deployRandomNumbers: DeployFunction = async (
     log(`SubscriptionId: ${subscriptionId}`);
     log("RandomNumbers deployed!");
 
-    if (developmentChains.includes(network.name)) {
-        const vrfMock = await ethers.getContract("VRFCoordinatorV2Mock");
-        await vrfMock.addConsumer(subscriptionId, randomNumbers.address);
-    }
-    log("Consumer added!");
+    // Needed from @chainlink/contracts ^0.4.2
+    // if (developmentChains.includes(network.name)) {
+    //     const vrfMock = await ethers.getContract("VRFCoordinatorV2Mock");
+    //     await vrfMock.addConsumer(subscriptionId, randomNumbers.address);
+    // }
+    // log("Consumer added!");
     log("-----------------------------------");
 };
 
