@@ -18,9 +18,10 @@ async function main() {
         "RandomNumbers",
         deployer
     );
-
+    
+    const requests = 5e5;
     let counter = 0;
-    while (counter < 10) {
+    while (counter < requests) {
         const requestTx = await randomNumbers.requestRandomNumber();
         const requestTxReceipt = await requestTx.wait(1);
         const requestId = requestTxReceipt.events![1].args!.requestId;
