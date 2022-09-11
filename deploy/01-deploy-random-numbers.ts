@@ -3,7 +3,7 @@ import { DeployFunction } from "hardhat-deploy/types";
 import { developmentChains, networkConfig } from "../helper-hardhat-config";
 import { ethers } from "hardhat";
 
-const VRF_FUND_AMOUNT = ethers.utils.parseEther("100");
+const VRF_FUND_AMOUNT = ethers.utils.parseEther("10000000000");
 
 const deployRandomNumbers: DeployFunction = async (
     hre: HardhatRuntimeEnvironment
@@ -13,6 +13,7 @@ const deployRandomNumbers: DeployFunction = async (
     const { deployer } = await getNamedAccounts();
     const chainId = network.config.chainId!;
 
+    console.log(`Funding amount: ${VRF_FUND_AMOUNT}`);
     let vrfMock, vrfCoordinatorAddress, subscriptionId;
 
     if (developmentChains.includes(network.name)) {
