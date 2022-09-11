@@ -4,7 +4,7 @@
   "description": "Testing the chainlink VRF-Coordinator.",
   "main": "index.js",
   "repository url": "",
-  "autor": "Philipp Rollmann",
+  "author": "Philipp Rollmann",
   "license": "MIT",
   "devDependencies": {
     "@chainlink/contracts": "^0.4.2",
