@@ -1,6 +1,7 @@
 import { ethers } from "hardhat";
 import { VRFCoordinatorV2Mock, RandomNumbers } from "../typechain-types";
 import fs from "fs";
+import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 
 interface Data {
     time: number;
@@ -9,19 +10,22 @@ interface Data {
 
 async function main() {
     const accounts = await ethers.getSigners();
-    const deployer = accounts[0];
+    const requestor = accounts[1];
     const vrfMock: VRFCoordinatorV2Mock = await ethers.getContract(
         "VRFCoordinatorV2Mock",
-        deployer
+        requestor
     );
     const randomNumbers: RandomNumbers = await ethers.getContract(
         "RandomNumbers",
-        deployer
+        requestor
     );
-    
+
     const requests = 5e5;
     let counter = 0;
     while (counter < requests) {
+        const subscription = await vrfMock.getSubscription(1);
+        const balance = subscription.balance;
+        console.log(`The subscription balance is: ${balance.toString()}`);
         const requestTx = await randomNumbers.requestRandomNumber();
         const requestTxReceipt = await requestTx.wait(1);
         const requestId = requestTxReceipt.events![1].args!.requestId;
