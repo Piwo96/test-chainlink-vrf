@@ -1,7 +1,6 @@
 import { ethers } from "hardhat";
 import { VRFCoordinatorV2Mock, RandomNumbers } from "../typechain-types";
 import fs from "fs";
-import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 
 interface Data {
     time: number;
